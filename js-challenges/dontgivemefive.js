@@ -28,25 +28,26 @@ for loop over the array
 function dontGiveMeFive(start, end)
 {
     let startNum = Math.abs(start);
-  let endNum = Math.abs(end);
-  let numLength = endNum - startNum;
-  let fives = Math.round(numLength / 5);
-  let nonFives = numLength - fives;
-  console.log(fives, nonFives)
-  let counter = 0;
-  return nonFives
+    let endNum = Math.abs(end);
+    
+    let counter = 0;
    /*
-  for(let i = startNum; i < endNum; i++){
-    if (i % 5 !=  0){
-      counter += 1;
+    let numLength = endNum - startNum;
+    let fives = Math.round(numLength / 5);
+    let nonFives = numLength - fives;
+    console.log(fives, nonFives)
+    
+    return nonFives
+   */
+    for(let i = startNum; i <= endNum; i++){
+      if (i % 5 !=  0 && i % 10 != 0){
+        counter += 1;
+      }
+      console.log(counter,i);
     }
-    console.log(i, counter);
+    return counter;
+    
   }
-  console.log(startNum,endNum)
-  return 0;
-  */
-
-}
 
 /* 
 NOTES
