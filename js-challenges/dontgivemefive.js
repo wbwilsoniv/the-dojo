@@ -27,37 +27,38 @@ for loop over the array
 
 function dontGiveMeFive(start, end)
 {
-  let startNum = Math.abs(start);
-  let endNum = Math.abs(end);
-  let numLength = endNum - startNum;
-  console.log(numLength);
   let counter = 0;
-  if (numLength >= 10){
-    let adjNumLength = numLength + 1;
-    let counter = 1;
-  }
-  
- /*
-  let numLength = endNum - startNum;
-  let fives = Math.round(numLength / 5);
-  let nonFives = numLength - fives;
-  console.log(fives, nonFives)
-  
-  return nonFives
- */
-  for(let i = startNum; i <= endNum; i++){
-    if (i % 5 !=  0 && i % 10 != 0){
+  let fives = 0;
+ for(let i = start; i <= end; i++){
       counter += 1;
-    }
-    console.log(counter,i);
+      let stringI = String(i);
+      if(stringI.includes('5')){
+        fives += 1;
+        console.log(fives);
+      }
   }
-  return counter;
-  
+  let numsLeft = counter - fives;
+  return numsLeft;
+
 }
 
 /* 
 NOTES
 
 find the difference between the start n end nums, usually (1) 5 per 10
+
+TO STRING METHOD
+ for(let i = startNum; i < endNum; i++){
+      let stringI = String(i);
+      
+      if( stringI.includes('5') ){
+        
+      }
+      counter += 1;
+    }
+    console.log(counter,i);
+  }
+  return counter;
+
 
 */
