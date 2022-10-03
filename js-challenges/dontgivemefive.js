@@ -25,6 +25,39 @@ for loop over the array
 
 */
 
+// REFACTORED
+
+function dontGiveMeFive(start, end) {
+  let counter = 0;
+  for(let i = start; i <= end; i++){
+    if(!i.toString().includes('5')){
+      counter ++;
+    } 
+  }
+  return counter;
+}
+
+
+// FINAL SUBMIT
+
+function dontGiveMeFive(start, end)
+{
+  let counter = 0;
+  let fives = 0;
+ for(let i = start; i <= end; i++){
+      counter += 1;
+      let stringI = String(i);
+      if(stringI.includes('5')){
+        fives += 1;
+      }
+  }
+  let numsLeft = counter - fives;
+  return numsLeft;
+}
+
+
+// PASSED ALL TESTS
+
 function dontGiveMeFive(start, end)
 {
   let counter = 0;
