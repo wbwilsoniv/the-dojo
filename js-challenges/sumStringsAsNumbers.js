@@ -8,6 +8,58 @@ A string representation of an integer will contain no characters besides the ten
 
 */
 
+// WORKS!
+function sumStrings(a,b) { 
+    let bigNums = false;
+    let bigNumA = BigInt(a);
+    let bigNumB = BigInt(b);
+    if(a.length === 0){
+      let numA = 0;
+    };
+    if(b.length === 0) {
+      let numB = 0;
+    }
+   if(a.length >= 15){
+     bigNums = true;
+     console.log(bigNumA);
+   }
+    if(b.length >= 15){
+     bigNums = true
+     console.log(bigNumB);
+   }
+    if(bigNums){
+      let bigNumSum = bigNumA + bigNumB;
+      console.log(bigNumSum);
+      return bigNumSum.toString();
+    } else {
+      let numA = a * 1;
+      let numB = b * 1;
+      let sumNum = numA + numB;
+      console.log(sumNum);
+      let sumStr = sumNum.toFixed();
+      return sumStr;
+    }
+  }
+
+
+// PASSES TESTS - Fails on large string (returns in scientific notation) 
+function sumStrings(a,b) { 
+
+    if(a.length === 0){
+      let numA = 0;
+    };
+    if(b.length === 0) {
+      let numB = 0;
+    }
+   
+    let numA = a * 1;
+    let numB = b * 1;
+    let sumNum = numA + numB;
+    console.log(sumNum);
+    let sumStr = sumNum.toFixed();
+    return sumStr;
+  }
+
 // PASSES INITIAL TESTS - Fails on ('', '5') 
 function sumStrings(a,b) { 
     if(a.length === 0){
