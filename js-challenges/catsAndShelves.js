@@ -31,7 +31,19 @@ Example
 Start 1, finish 5, then answer is 2 (1 => 4 => 5 or 1 => 2 => 5)
 */
 
+
+
+
+
+// Passed intial tests
 function solution(start, finish) 
 {
-  //Mew
+    let distance = finish - start;
+  console.log(distance);
+  if( distance === 2){
+    return 2;
+  }
+  
+  let jumps = Math.ceil(distance / 3);
+  return jumps;
 }
