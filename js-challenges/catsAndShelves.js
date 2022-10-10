@@ -31,7 +31,25 @@ Example
 Start 1, finish 5, then answer is 2 (1 => 4 => 5 or 1 => 2 => 5)
 */
 
+// Optimized solution
+const solution = (start, finish, difference = finish - start) =>
+  Math.floor(difference / 3) + difference % 3
 
+  
+// PASSES ALL TESTS
+function solution(start, finish) 
+{
+  let distance = finish - start;
+  if( distance === 2){
+    return 2;
+  }
+  let jumps = Math.ceil(distance / 3);
+  let leftOvers = distance % 3;
+  if(leftOvers === 2){
+    jumps++;
+  }
+  return jumps;
+}
 
 
 
