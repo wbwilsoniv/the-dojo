@@ -13,6 +13,20 @@ Example: (input --> output)
 "GTAT" --> "CATA"
 */
 
+// Passes initial tests
 function DNAStrand(dna){
-    //your code here
+    let compStrand = [];
+    for(let i = 0; i < dna.length; i++){
+      if(dna[i] === "A"){
+        compStrand.push("T");
+      } else if (dna[i] === "T"){
+          compStrand.push("A");
+      } else if (dna[i] === "G"){
+          compStrand.push("C");
+      } else if (dna[i] === "C"){
+          compStrand.push("G");
+      }
+    }
+    console.log(compStrand.join(''))
+   return compStrand.join('')
   }
