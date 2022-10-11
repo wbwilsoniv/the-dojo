@@ -13,6 +13,36 @@ Example: (input --> output)
 "GTAT" --> "CATA"
 */
 
+// Optimized
+let pairs = {A:'T',T:'A',C:'G',G:'C'};
+const DNAStrand = dna => dna.replace(/./g, c => pairs[c]);
+
+
+
+// Refactored with switch cases
+function DNAStrand(dna){
+    //your code here
+    let res="";
+    for(var i=0; i<dna.length; i++) {
+      switch(dna[i]) {
+        case 'A':
+          res += "T";
+          break;
+        case 'T':
+          res += "A";
+          break;
+        case 'G':
+          res += "C";
+          break;
+        case 'C':
+          res += "G";
+          break;
+      }
+    }
+    return res;
+  }
+
+
 // Passes initial tests
 function DNAStrand(dna){
     let compStrand = [];
