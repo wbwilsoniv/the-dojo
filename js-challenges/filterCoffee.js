@@ -10,8 +10,14 @@ Your 'search' function should return the stores that sell coffee within your bud
 The search function should return a string of prices for the coffees beans you can afford. The prices in this string are to be sorted in ascending order.
 */
 
+// Returns nonsorted array of prices within budget
 function search(budget, prices) {
-
-    // return array of prices that are within budget
-    
+    let withinBudget = [];
+  // return array of prices that are within budget
+    for(i = 0; i < prices.length; i++){
+      if(prices[i] <= budget){
+        withinBudget.push(prices[i]);
+      }
+      console.log(withinBudget);
     }
+  }
