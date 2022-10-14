@@ -10,6 +10,10 @@ Your 'search' function should return the stores that sell coffee within your bud
 The search function should return a string of prices for the coffees beans you can afford. The prices in this string are to be sorted in ascending order.
 */
 
+// Optimized
+const search = (budget, prices) => prices.filter(price => price <= budget).sort((a,b) => a - b).toString();
+
+
 // Refactored to use ES6 syntax for sort function
 function search(budget, prices) {
     const withinBudget = prices.filter(price => price <= budget);
