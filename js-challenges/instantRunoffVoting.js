@@ -15,5 +15,18 @@ Your function will be given a list of voter ballots; each ballot will be a list 
 */
 
 function runoff(voters){
-    //your code here
+    //array of arrays
+    // array length = number of ballots
+    // 1st place must be > 50% (number of ballots / 2)
+    // if no winner, remove the lowest nummber of votes
+    //  - if two lowests tie -> remove both.
+    // recursive function? 
+    console.log(voters.length);
+    let votesNeeded = voters.length / 2;
+    let voteCount = "";
+    const lastVotes = voters.map(vote => (voteCount.concat(vote)));
+    console.log(lastVotes);
+    let cleanStrings = lastVotes.split(",");
+    //const stringVotes = lastVotes.forEach(vote => (vote.split(",")))
+    console.log(cleanStrings);
   }
