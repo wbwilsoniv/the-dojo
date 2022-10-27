@@ -7,7 +7,17 @@ Examples
 3, 3  -->  [3, 9, 81]
 */
 
-// Passes Initial Tests
+// Refactored
+function squares(x, n) {
+    let sqArr = [];
+    if(n <= 0) return sqArr;
+    for(let i = x; sqArr.length < n; i*=i) {
+        sqArr.push(i);
+    }
+    return sqArr
+  }
+
+// Passes all tests
 function squares(x, n) {
     let sqArr = [];
     if(n <= 0){
@@ -16,7 +26,6 @@ function squares(x, n) {
         sqArr.push(x);
         for(let i = 1; i < n; i++){
             sqArr.push(sqArr[i - 1] ** 2);
-            console.log(sqArr[i - 1], sqArr);
         }
       return sqArr;
     }
