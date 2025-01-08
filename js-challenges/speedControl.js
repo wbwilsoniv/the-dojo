@@ -19,8 +19,17 @@ With floats it can happen that results depends on the operations order. To calcu
  (3600 * delta_distance) / s.
 */
 
-//
-
+// Refactored
+const gps = (s, x) => {
+    if (x.length<=1) {
+      return 0;
+    }    
+    let output = [];
+    for (let i = 0; i < x.length-1; i++) { 
+      output.push((x[i+1]-x[i])*3600/s);
+    }   
+    return Math.max(...output);
+  }
 
 
 // Passes tests
