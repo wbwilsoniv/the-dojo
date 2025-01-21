@@ -12,26 +12,27 @@ arrayMadness([4, 5, 6], [1, 2, 3]); // returns true since 4 ** 2 + 5 ** 2 + 6 **
 Get your timer out. Are you ready? Ready, get set, GO!!!
 */
 
-//WIP
+//Working Solution
 
 function arrayMadness(a, b) {
     let aSum = 0;
     let bSum = 0;
     function squares(n) {
-      let aSq = n^2;
+      let aSq = n * n;
+      console.log(aSq)
       aSum += aSq;
       console.log(aSq, aSum);
     };
      
-    let aSum1 = a.forEach(squares);
+  const aSum1 = a.forEach(squares);
     console.log(aSum1);
     function cubes(m) {
-      let bCube = m^3;
+      let bCube = m * m * m;
       bSum += bCube;
       console.log(bCube, bSum);
     };
     
-   b.forEach(cubes);
+  const bSum1 = b.forEach(cubes);
     
      console.log(aSum,bSum, typeof(aSum), typeof(bSum));
     if(aSum > bSum) {
@@ -40,5 +41,31 @@ function arrayMadness(a, b) {
     } else {
       console.log(false);
       return false;
+    }
+  };
+
+  // Refactored Solution
+
+  function arrayMadness(a, b) {
+    let aSum = 0;
+    let bSum = 0;
+    
+    const squares = (n) => {
+      let aSq = n*n;
+      aSum += aSq;
     };
-};
+     
+    const aSum1 = a.forEach(squares);
+  
+    const cubes = (m) => {
+      let bCube = m*m*m;
+      bSum += bCube;
+    };
+    
+    const bSum1 = b.forEach(cubes);
+    
+    const isAbigger = aSum > bSum ? true : false;
+  
+    return isAbigger;
+  
+  };
