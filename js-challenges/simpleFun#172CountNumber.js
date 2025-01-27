@@ -53,3 +53,44 @@ function countNumber(n, x) {
      count = prodArr.length * 2;
     return count;
   };
+
+// Working:
+
+function countNumber(n, x) {
+    // Initialize counter for occurrences
+    let count = 0;
+    
+    // Since we're looking for i * j = x
+    // We need to find all pairs of factors of x that are within our table bounds
+    for (let i = 1; i <= n; i++) {
+        // If i is a factor of x, check if the corresponding j is within bounds
+        if (x % i === 0) {
+            // Calculate the corresponding j value
+            const j = x / i;
+            
+            // Check if j is within the table bounds and is an integer
+            if (j <= n && Number.isInteger(j)) {
+                count++;
+            }
+        }
+    }
+    
+    return count;
+};
+
+// Working without comments
+
+function countNumber(n, x) {
+    let count = 0;
+    
+    for (let i = 1; i <= n; i++) {
+        if (x % i === 0) {
+            const j = x / i; 
+            if (j <= n && Number.isInteger(j)) {
+                count++;
+            }
+        }
+    }
+    
+    return count;
+};
