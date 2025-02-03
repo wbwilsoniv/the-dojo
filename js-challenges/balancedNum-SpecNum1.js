@@ -36,15 +36,14 @@ sum of all digits to the right of the middle digit(s) -> 20
 10 and 20 are not equal, so it's not balanced.
 */
 
-// WIP CODE - solves for odd numbers, but does return requested string yet
+// Working Solution 
 
 function balancedNum(number)
 {
    if(number >= 0 && number < 100){
-     console.log("Balanced")
      return "Balanced";
    } else {
-     
+     let answer = "";
      let numArr = Array.from(number.toString(), Number).map(Number);
      let lOfArr = numArr.length;
      let midNumI = 0;
@@ -57,53 +56,37 @@ function balancedNum(number)
        }
        if(isEven != true){
          let firstHalf = numArr.slice(0, midNumI);
-         let secondHalf = numArr.slice(midNumI+ 1, lOfArr);
-        // console.log(firstHalf, secondHalf, isEven);
+         let secondHalf = numArr.slice(midNumI + 1, lOfArr);
          let firstSum = firstHalf.reduce((a, cv) => a + cv);
          let secSum = secondHalf.reduce((a, cv) => a + cv);
-         console.log(firstSum, secSum);
-         firstSum == secSum ? console.log("Balanced") : console.log("Not Balanced");
+         firstSum == secSum ? answer = "Balanced" : answer = "Not Balanced";
+         return answer;
        } else {
          let firstHalf = numArr.slice(0, midNumI - 1);
-         let secondHalf = numArr.slice(midNumI, lOfArr - 1)
-         // console.log(firstHalf, secondHalf, isEven);
+         let secondHalf = numArr.slice(midNumI + 1, lOfArr)
          let firstSum = firstHalf.reduce((a, cv) => a + cv);
          let secSum = secondHalf.reduce((a, cv) => a + cv);
-         console.log(firstSum, secSum);
-         firstSum == secSum ? console.log("Balanced") : console.log("Not Balanced");
-       }
-     /*
-     lOfArr % 2 != 0 ? midNumI = Math.floor(lOfArr / 2) : midNumI = lOfArr / 2;
-     console.log(midNumI);
-     ;
-     console.log(firstHalf, secondHalf);
-   
-     let midNumIndex1 = lOfArr / 2;
-     let midNumIndex2 = midNumIndex1 - 1;
-      
-    
-     midNumIndex % 2 == 0 ? 
-    ;
-     let midNum = 0;
-     let firstHalf = numArr.slice(0, midNumIndex);
-     let secondHalf = numArr.slice(midNumIndex, (lOfArr - 1));
-   
-     // const firstSum = firstHalf.reduce((a, cv) => a + cv);
-     // const secSum = secondHalf.reduce((a, cv) => a + cv);
-     //console.log(firstHalf, secondHalf);
-    
-     if(lOfArr % 2 == 0) {
-       let midNumIndex = lOfArr / 2;
-       let midNum = numArr[midNumIndex];
-     } else {
-       let midNumIndex = Math.floor(lOfArr / 2);
-       let midNum = numArr[midNumIndex];
-     }
-     
-     */
-    // console.log(numArr, lOfArr, midNumIndex, midNum);
+         firstSum == secSum ? answer = "Balanced" : answer = "Not Balanced";
+         return answer;
+       }  
    }
-  //if(numArr )
-  //let balanced = true;
+};
 
-}
+// Refactored
+
+function balancedNum(number) {
+    if (String(number).length < 3) {
+      return 'Balanced';
+    }
+    const numArr = String(number).split('').map(Number);
+    const isOddCountNum = numArr.length % 2 ? true : false;
+    if (isOddCountNum) {
+      const left = numArr.slice(0, numArr.length / 2).reduce((a, b) => a + b);
+      const right = numArr.slice(numArr.length / 2 + 1).reduce((a, b) => a + b);
+      return left === right ? 'Balanced' : 'Not Balanced';
+    }
+    const left = numArr.slice(0, numArr.length / 2 - 1).reduce((a, b) => a + b);
+    const right = numArr.slice(numArr.length / 2 + 1).reduce((a, b) => a + b);
+    return left === right ? 'Balanced' : 'Not Balanced';
+  }
+
