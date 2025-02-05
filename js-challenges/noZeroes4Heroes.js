@@ -25,3 +25,41 @@ function noBoringZeros(n) {
     const result = parseInt(numStg, 10);
     return result;
   }
+
+
+// Working Solution
+
+function noBoringZeros(n) {
+    // Special case: if n is 0, return 0
+    if (n === 0) return 0;
+    
+    // Convert number to string to easily work with digits
+    let numStr = Math.abs(n).toString();
+    
+    // Remove trailing zeros using while loop
+    while (numStr.endsWith('0')) {
+        numStr = numStr.slice(0, -1);
+    }
+    
+    // Convert back to number and preserve original sign
+    return Math.sign(n) * Number(numStr);
+}
+
+// Optimized Solution
+
+function noBoringZeros(n) {
+    if (n === 0) return 0;
+    
+    // Divide by 10 until we hit a non-zero remainder
+    while (n !== 0 && n % 10 === 0) {
+        n = n / 10;
+    }
+    
+    return n;
+}
+
+// REGEX Solution
+
+function noBoringZeros(n) {
+    return Number(String(n).replace(/0+$/,''));
+  }
