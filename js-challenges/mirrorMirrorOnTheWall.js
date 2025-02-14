@@ -50,3 +50,64 @@ function mirror(data) {
     }
     return mirrorArr;
   }
+
+// Passed all tests but one
+function mirror(data) {
+let copyData = [...data];
+const sortedData = copyData.sort((a,b) => a - b);
+//const sortedArr = arr => [...arr].sort((a, b) => a - b);
+
+console.log(sortedData);
+if(sortedData.length <= 1){
+  return copyData;
+}
+const firstHalf = [...sortedData].slice(0, (sortedData.length));
+const secondHalf = [...sortedData].slice(0,(sortedData.length - 1));
+const revArr = arr => {
+  return [...arr].reduce((rev, x) => [x, ...rev], []);
+}
+const revSec = revArr(secondHalf);
+console.log(firstHalf, secondHalf, revSec);
+const fullArr = firstHalf.concat(revSec);
+return fullArr;
+}
+
+// Works!
+
+function mirror(data) {
+    if (data.length <= 1) {
+        return [...data];
+    }
+    
+    // Create a single copy and sort it ascending
+    // This is our most expensive operation, but we only do it once
+    const sorted = [...data].sort((a, b) => a - b);
+    
+    // Calculate the result length (original length * 2 - 1)
+    // This ensures we have a middle element and equal sides
+    const resultLength = data.length * 2 - 1;
+    
+    // Create a new array with the final size we need
+    // This is more efficient than concatenating arrays
+    const result = new Array(resultLength);
+    
+    // Fill the array from both ends simultaneously
+    // This is more efficient than creating separate arrays and joining them
+    for (let i = 0; i < data.length; i++) {
+        // Place the same number on both sides of the middle
+        result[i] = sorted[i];                          // Left side
+        result[resultLength - 1 - i] = sorted[i];       // Right side
+    }
+    
+    // Place the highest number in the middle
+    result[data.length - 1] = sorted[data.length - 1];
+    
+    return result;
+}
+
+// Refactored
+
+function mirror(data) {
+    const sort = data.slice().sort((a, b) => a - b);
+    return [...sort, ...sort.reverse().slice(1)];
+  }
