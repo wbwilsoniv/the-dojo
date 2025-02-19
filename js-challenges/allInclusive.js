@@ -36,4 +36,39 @@ function containAllRots(strng, arr) {
     } else { return false }
   }
 
+
+// Solved
+function containAllRots(strng, arr) {
+  // Handle empty string case
+  if (strng === "") {
+      return true;
+  }
   
+  // Helper function to get one rotation of a string
+  function getOneRotation(str) {
+      return str.slice(1) + str[0];
+  }
+  
+  // Get all possible rotations of the input string
+  let allRotations = [];
+  let currentRotation = strng;
+  
+  // Generate all rotations by rotating strng.length times
+  for (let i = 0; i < strng.length; i++) {
+      allRotations.push(currentRotation);
+      currentRotation = getOneRotation(currentRotation);
+  }
+  
+  // Check if every rotation exists in the input array
+  return allRotations.every(rotation => arr.includes(rotation));
+}
+
+// Refactored
+function containAllRots(str, arr) {
+  for (var i = 0; i < str.length; i++) {
+    if (arr.indexOf(str.slice(i) + str.slice(0, i)) === -1) {
+      return false
+    }
+  }
+  return true
+}
