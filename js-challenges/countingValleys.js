@@ -41,3 +41,17 @@ function countingValleys(s) {
     }
     return valleys;
   }
+
+// Refactored
+
+function countingValleys(s) {
+    //here we go again
+    let level=0;
+    let valleys = 0;
+    s.split("").forEach(el=>{
+      if(level===-1&&el==="U") valleys++;
+      if(el==="D") level-=1;
+      if(el==="U") level+=1;
+    })
+    return valleys;
+  }
