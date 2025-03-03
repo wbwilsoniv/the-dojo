@@ -31,24 +31,24 @@ There're no additional votes to cast, and there's already a tie.
 Puzzles
 */
 
-// Code
+// Working Code
 
 function electionsWinners(votes, k) {
-    let sortedVs = [...votes].sort();
-    let highV = [...sortedVs].pop();
-    console.log(sortedVs, k, highV);
-    let counter = 0;
-    if(k === 0 && highV > sortedVs[sortedVs.length - 2]){
-      return counter;
-    }
-    for(let i = sortedVs.length - 1; i >= 0; i--){
-      if(sortedVs[i] + k > highV){
-        counter += 1;
-        console.log(counter);
-      }
-    }
-    return counter;
-    
+    const max = Math.max(...votes);
+    const secV = votes.filter(el => el >= max);
+    console.log(max, secV);
+    if(k === 0 && secV.length === 1) return 1;
+    if(votes.length === 0) return 0;
+    const vNeeded = max - k;
+    return votes.filter(el => el > vNeeded).length;
   }
 
-  
+// Refactored
+
+function electionsWinners(votes, k) {
+    let max = Math.max(...votes);
+    
+    return k 
+      ? votes.filter(v => v + k > max).length 
+      : +(votes.filter(v => v === max).length === 1);
+  }
