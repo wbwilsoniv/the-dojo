@@ -11,7 +11,7 @@ For example:
 
 */
 
-// Code
+// Code - Doesn't work
 
 function charConcat(string){
     let str1 = string.slice(0, string.length)
@@ -33,3 +33,17 @@ function charConcat(string){
     const str2Arr = str2.split("");
     console.log(string,strArr);
   }
+// Works!
+function charConcat(string){
+    let newStr = "";
+    let num = string.length / 2;
+    if(num % 2 != 0) num = Math.floor(string.length / 2);
+    let strArr = string.split("");
+    let newStrArr = []
+    for(let i=0; i < num; i++){
+      newStrArr.push(newStr.concat(strArr[i], strArr.pop(), i + 1))
+    }
+    newStr = newStrArr.toString().replaceAll(",","");
+    return newStr;
+  }
+  
