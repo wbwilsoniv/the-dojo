@@ -45,3 +45,31 @@ function arrayChange(arr) {
     }
   console.log(moves);
 }
+
+// Working Solution
+
+function arrayChange(arr) {
+    const workingArray = [...arr];
+      
+      return workingArray.slice(1).reduce((moves, current, index) => {
+        const prevIndex = index; 
+        // This refers to original index-1
+        
+        if (current <= workingArray[prevIndex]) {
+          // Calculate required increase
+          const requiredIncrease = workingArray[prevIndex] - current + 1;
+          
+          // Update working array (important for next iterations)
+          workingArray[prevIndex + 1] += requiredIncrease;
+          
+          // Add to total moves
+          return moves + requiredIncrease;
+        }
+        
+        return moves;
+      }, 0);
+    }
+
+// Refactored
+const arrayChange = arr =>
+    arr.reduce((pre, val, idx) => (idx && val <= arr [idx - 1] && (arr[idx] += arr[idx - 1] - val + 1), pre + arr[idx] - val), 0);    
