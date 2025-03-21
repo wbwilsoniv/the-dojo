@@ -13,28 +13,23 @@ vowelOne( "aeiou, abc" ) // "1111100100"
 FundamentalsStrings
 */
 
-// Code  - doesn't work
+// Code  -  Works
 function vowelOne(s){
-    let numStg = "";
-    let lowerS = s.toLowerCase();
+    let oneRemove = s.replaceAll("1", "0");
+    let lowerS = oneRemove.toLowerCase();
     const regex = /[aeiou]/gi;
-    console.log(lowerS.search(regex));
-    for(let i = 0; i < lowerS.length; i++){
-      if(lowerS.charAt(i) == vowels){
-        
-        console.log(vowels)
-      }
-    }
-    /*
-    for(let i = 0; i < s.length; i++){
-      if(s.charAt(i) == "a" || s.charAt(i) == "A" || s.charAt(i) == "e" || s.charAt(i) == "E" || s.charAt(i) == "i" || s.charAt(i) == "I" || s.charAt(i) == "o" || s.charAt(i) == "O" || s.charAt(i) == "u" || s.charAt(i) == "U") {
-        numStg.concat("1");
-        console.log(numStg);
-      } else {
-        numStg.concat("0");
-        console.log(numStg);
-      }
-    }
-    */
-    console.log(numStg);
+    const regex0 = /[^1]/g;
+    let vowelSwap = lowerS.replaceAll(regex, "1");
+    let otherSwap = vowelSwap.replaceAll(regex0, "0");
+    return otherSwap
+  }
+
+// Refactored Regex
+function vowelOne(s){
+    return s.replace(/[^aeiou]/gi, '0').replace(/[^\d]/g, '1');
+  }
+
+// Refactored Higher Order Function
+function vowelOne(s){
+    return s.split('').map(x => ('aeiouAEIOU'.includes(x)) ? 1 : 0).join('');
   }
