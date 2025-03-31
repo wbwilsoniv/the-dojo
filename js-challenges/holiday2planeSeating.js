@@ -14,48 +14,51 @@ Given a seat number, your task is to return the seat location in the following f
 
 If the number is over 60, or the letter is not valid, return 'No Seat!!'.
 
-FundamentalsStringsArrays
+#Fundamentals #Strings #Arrays #Regex
 */
 
-// Code
+// Code - Works
+
 function planeSeat(a){
-    let location = "";
-    let row;
-    const seatsAvail = /[ABCDEFGHK]/gi
-    console.log(a.match(seatsAvail))
-    if(a.match(seatsAvail) === null){
-      location = "No Seat!!"
-      return location;
+    if (!/^([1-9]|[1-5][0-9]|60)[A-HK]$/.test(a)) {
+      return "No Seat!!";
     }
-    let seatExists = true;
-    let seat = a.slice(-1).toUpperCase();
-    if(seat === "A" || "B" || "C"){
-      seat = "Left";
-    } else if (seat === "D" || "E" || "F") {
-      seat = "Middle";
-    } else if (seat === "G" || "H" || "K") {
-      seat = "Right";
+    
+    const seatNumber = parseInt(a.match(/\d+/)[0]);
+    const seatLetter = a.charAt(a.length - 1);
+    
+    let section;
+    if (seatNumber >= 1 && seatNumber <= 20) {
+      section = "Front";
+    } else if (seatNumber <= 40) {
+      section = "Middle";
+    } else if (seatNumber <= 60) {
+      section = "Back";
     } else {
-      seatExists = false;
-      console.log(seat, seatExists)
+      return "No Seat!!";
     }
-    if(!seatExists) return "No Seat!!";
-    if(a.length === 2) {
-      row = a.slice(0,1);
-    } else if(a.length === 3) {
-      row = a.slice(0,2);
-    }
-    console.log(seat, row);
-    if(row >= 1 && row <= 20){
-      row = "Front-";
-    } else if(row > 20 && row <= 40){
-      row = "Middle-"
-    } else if(row > 40 && row <= 60) {
-      row = "Back-"
+    
+    let cluster;
+    if (/[A-C]/.test(seatLetter)) {
+      cluster = "Left";
+    } else if (/[D-F]/.test(seatLetter)) {
+      cluster = "Middle";
+    } else if (/[GHK]/.test(seatLetter)) {
+      cluster = "Right";
     } else {
-      seatExists = false;
+      return "No Seat!!";
     }
-    console.log(location,seat)
-   if(seatExists) return `${row}${seat}`;
-   if(!seatExists) return 'No Seat!!';
+  
+    return `${section}-${cluster}`;
+  
   }
+
+// Refactored
+
+function planeSeat(a){
+    const number = parseInt(a);
+    const letter = a[a.length - 1];
+    if (number > 60 || letter == 'I' || letter == 'J') return 'No Seat!!';
+    return `${number > 20 ? number > 40 ? 'Back-' : 'Middle-' : 'Front-'}${letter > 'C' ? letter > 'F' ? 'Right' : 'Middle' : 'Left'}`;
+  }
+
